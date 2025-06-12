@@ -2,9 +2,11 @@ from dash import html, dcc, dash_table, ctx, Output, Input
 import pandas as pd
 import io
 import plotly.express as px
+import requests
+from io import StringIO
 
 
-df = pd.read_csv("Datasets/retail_cleaned_for_lstm.csv")
+df = pd.read_csv(StringIO(requests.get("https://drive.google.com/file/d/1cNzCXXzy_jfKd1Ip3CVhs4WB8RZtaJp6/view?usp=drive_link").text))
 
 layout = html.Div([
     html.Div([
