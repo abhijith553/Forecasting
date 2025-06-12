@@ -74,12 +74,12 @@ app.layout = html.Div([
                                             'borderRadius': '7px'
             }),
             html.Div([
-                dcc.Link("Home", href='/', style=link_style),
-                dcc.Link("EDA", href='/eda', style=link_style),
-                dcc.Link("More Insights", href='/more_insights', style=link_style),
-                dcc.Link("Forecast", href='/forecast', style=link_style),
-                dcc.Link("Methodology", href='/methodology', style=link_style),
-                dcc.Link("About", href='/about_the_project', style=link_style),
+                dcc.Link("Home", href='pages/', style=link_style),
+                dcc.Link("EDA", href='pages/eda', style=link_style),
+                dcc.Link("More Insights", href='pages/more_insights', style=link_style),
+                dcc.Link("Forecast", href='pages/forecast', style=link_style),
+                dcc.Link("Methodology", href='pages/methodology', style=link_style),
+                dcc.Link("About", href='pages/about_the_project', style=link_style),
             ], style={
                         'display': 'flex',
                         'flexDirection': 'column',
@@ -107,15 +107,15 @@ app.layout = html.Div([
 
 @app.callback(Output('page-content', 'children'), Input('url', 'pathname'))
 def render_page(pathname):
-    if pathname == '/eda':
+    if pathname == 'pages/eda':
         return eda.layout
-    elif pathname == '/forecast':
+    elif pathname == 'pages/forecast':
         return forecast.layout
-    elif pathname == '/methodology':
+    elif pathname == 'pages/methodology':
           return methodology.layout
-    elif pathname == '/more_insights':
+    elif pathname == 'pages/more_insights':
           return more_insights.layout
-    elif pathname == '/about_the_project':
+    elif pathname == 'pages/about_the_project':
         return about_the_project.layout
     else:
         return html.Div("welcome to the dash app", style={
@@ -133,4 +133,4 @@ eda.register_callbacks(app)
 forecast.register_callbacks(app)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host = "0.0.0.0", port = 10000)
