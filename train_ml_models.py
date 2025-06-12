@@ -1,27 +1,22 @@
-# Standard library
 import json
 import os
 
-# Data manipulation and visualization
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import plotly.express as px
 import plotly.graph_objs as go
 
-# Machine learning
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from xgboost import XGBRegressor
 
-# Time series analysis
 from statsmodels.tsa.stattools import adfuller
 from statsmodels.tsa.arima.model import ARIMA
 from pmdarima import auto_arima
 
-# Deep learning
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense
 from tensorflow.keras.callbacks import History

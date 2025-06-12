@@ -42,11 +42,11 @@ layout = html.Div([
                 'textAlign': 'center'
             }),
     html.Div([
-        html.Img(src='/assets/image1.png', style={
+        html.Img(src='Assets/image1.png', style={
                                                     'width': '100px', 
                                                     'margin': '10px'
         }),
-        html.Img(src='/assets/image2.png', style={
+        html.Img(src='Assets/image2.png', style={
                                                     'width': '200px',
                                                     'margin': '10px'
         })

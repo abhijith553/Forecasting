@@ -4,7 +4,7 @@ import io
 import plotly.express as px
 
 
-df = pd.read_csv("C:\\Users\\Abhijith\\Documents\\programs\\personal\\datasets\\retail_cleaned_for_lstm.csv")
+df = pd.read_csv("Datasets/retail_cleaned_for_lstm.csv")
 
 layout = html.Div([
     html.Div([
