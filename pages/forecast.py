@@ -10,7 +10,7 @@ import os
 import requests
 from io import StringIO
 
-df = pd.read_csv(StringIO(requests.get("https://drive.google.com/file/d/1cNzCXXzy_jfKd1Ip3CVhs4WB8RZtaJp6/view?usp=drive_link").text))
+df = pd.read_csv(StringIO(requests.get("https://drive.google.com/uc?export=download&id=1cNzCXXzy_jfKd1Ip3CVhs4WB8RZtaJp6").text))
 
 layout = html.Div([
     html.Div([
@@ -34,13 +34,14 @@ layout = html.Div([
 ], style={'display': 'flex', 'justifyContent': 'space-between','backgroundColor': '#fff'})
 
 def load_arima_output():
-    df_results = pd.read_csv(StringIO(requests.get("https://drive.google.com/file/d/1AXHXgJYK-SYVoUUZdCp3kY6SbXCQsYrY/view?usp=drive_link")))
-    future_df = pd.read_csv(StringIO(requests.get("https://drive.google.com/file/d/1_nfM-qqcThbZmJs50Oq1TzBUs5OCG1ZV/view?usp=drive_link")))
+    df_results = pd.read_csv(StringIO(requests.get("https://drive.google.com/uc?export=download&id=1AXHXgJYK-SYVoUUZdCp3kY6SbXCQsYrY")))
+    future_df = pd.read_csv(StringIO(requests.get("https://drive.google.com/uc?export=download&id=1_nfM-qqcThbZmJs50Oq1TzBUs5OCG1ZV")))
     df_results['Date'] = pd.to_datetime(df_results['Date'])
     future_df['Date'] = pd.to_datetime(future_df['Date'])
 
-    with open("model_outputs/arima_metrics.json", "r") as f:
-        metrics = json.load(f)
+
+    metrics = json.loads(requests.get("https://drive.google.com/uc?export=download&id=1XkU9kYu2nUu9BnCpi_Jcz7_VfdqSfpLW").text)
+
 
     df_results.set_index('Date', inplace=True)
     weekly_df = df_results.resample('W').mean().dropna().reset_index()
@@ -120,11 +121,11 @@ def load_arima_output():
 
 
 def load_lstm_output():
-    df_results = pd.read_csv(StringIO(requests.get("https://drive.google.com/file/d/1rgRP9oYakuEOqcT0e4VqY7P9yBYGKWKy/view?usp=drive_link").text))
-    df_forecast = pd.read_csv(StringIO(requests.get("https://drive.google.com/file/d/1Uzt8UEEmZdxOBnWzJuDyFdaCYUjEeaZp/view?usp=drive_link").text))
+    df_results = pd.read_csv(StringIO(requests.get("https://drive.google.com/uc?export=download&id=1rgRP9oYakuEOqcT0e4VqY7P9yBYGKWKy").text))
+    df_forecast = pd.read_csv(StringIO(requests.get("https://drive.google.com/uc?export=download&id=1Uzt8UEEmZdxOBnWzJuDyFdaCYUjEeaZp").text))
 
-    with open(StringIO(requests.get("https://drive.google.com/file/d/1eKJ9xPEGEJWgfZ6RGDXGidQzw7MrcQvy/view?usp=drive_link")), "r") as f:
-        metrics = json.load(f)
+    metrics = json.loads(requests.get("https://drive.google.com/uc?export=download&id=1eKJ9xPEGEJWgfZ6RGDXGidQzw7MrcQvy").text)
+
     df_results['Date'] = pd.to_datetime(df_results['Date'])
 
     df_grouped = df_results.groupby('Date').agg({'Actual': 'mean', 'Predicted': 'mean'}).reset_index()
@@ -165,7 +166,7 @@ def load_lstm_output():
     fig2.add_trace(go.Scatter(x=df_forecast['Date'], y=df_forecast['Forecast'], mode='lines+markers', name='4-Week Forecast'))
     fig2.update_layout(title='LSTM: 4-Week Forecast', xaxis_title='Date', yaxis_title='Sales', template='plotly_white')
 
-    df_loss = pd.read_csv(StringIO(requests.get("https://drive.google.com/file/d/1605qJ-KoWZRquuAR50o2Y1MzAGeijIWo/view?usp=drive_link").text))
+    df_loss = pd.read_csv(StringIO(requests.get("https://drive.google.com/uc?export=download&id=1605qJ-KoWZRquuAR50o2Y1MzAGeijIWo").text))
     fig3 = go.Figure()
     fig3.add_trace(go.Scatter(y=df_loss['loss'], mode='lines+markers', name='Training Loss'))
     fig3.update_layout(title='LSTM: Training Loss Over Epochs', xaxis_title='Epoch', yaxis_title='Loss', template = 'plotly_white')
@@ -181,12 +182,12 @@ def load_lstm_output():
 
 def load_xgboost_output():
 
-    df_results = pd.read_csv(StringIO(requests.get("https://drive.google.com/file/d/14fXSTGaPgDdIZur2UdRe9mKz8SuZo39J/view?usp=drive_link").text))
+    df_results = pd.read_csv(StringIO(requests.get("https://drive.google.com/uc?export=download&id=14fXSTGaPgDdIZur2UdRe9mKz8SuZo39J").text))
 
-    with open(StringIO(requests.get("https://drive.google.com/file/d/1QYaFtQRBx9GXHqlmrru-Mi0a3RqZMIU3/view?usp=drive_link")), "r") as f:
-        metrics = json.load(f)
+    metrics = json.loads(requests.get("https://drive.google.com/uc?export=download&id=1QYaFtQRBx9GXHqlmrru-Mi0a3RqZMIU3").text)
 
-    importance_df = pd.read_csv(StringIO(requests.get("https://drive.google.com/file/d/1QRRTfRlJYbGvF9J5c4WO_beAYmgUIArJ/view?usp=drive_link").text))
+
+    importance_df = pd.read_csv(StringIO(requests.get("https://drive.google.com/uc?export=download&id=1QRRTfRlJYbGvF9J5c4WO_beAYmgUIArJ").text))
 
     df_results = df_results.groupby('Date').mean().reset_index()
 
@@ -228,14 +229,14 @@ def load_xgboost_output():
 
 
 def load_linear_regression_output():
-    df_results = pd.read_csv(StringIO(requests.get("https://drive.google.com/file/d/1U6-6-48pi27GvRtOYfPUa0M1IGMqz1rz/view?usp=drive_link").text))
+    df_results = pd.read_csv(StringIO(requests.get("https://drive.google.com/uc?export=download&id=1U6-6-48pi27GvRtOYfPUa0M1IGMqz1rz").text))
     df_results["Date"] = pd.to_datetime(df_results["Date"])
     df_results.sort_values("Date", inplace=True)
 
-    with open(StringIO(requests.get("https://drive.google.com/file/d/1EQJti0NJltfEpFOA90KTuYKWXebSMQng/view?usp=drive_link")) "r") as f:
-        metrics = json.load(f)
+    metrics = json.loads(requests.get("https://drive.google.com/uc?export=download&id=1EQJti0NJltfEpFOA90KTuYKWXebSMQng").text)
 
-    coeff_df = pd.read_csv(StringIO(requests.get("https://drive.google.com/file/d/1UKeL3aJUZ3o8pnaRkvp3aSFyh6TxQ1SA/view?usp=drive_link").text))
+
+    coeff_df = pd.read_csv(StringIO(requests.get("https://drive.google.com/uc?export=download&id=1UKeL3aJUZ3o8pnaRkvp3aSFyh6TxQ1SA").text))
     coeff_df_sorted = coeff_df.reindex(coeff_df["Coefficient"].abs().sort_values(ascending=False).index)
 
     df_results.set_index("Date", inplace=True)

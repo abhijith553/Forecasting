@@ -6,7 +6,7 @@ import requests
 from io import StringIO
 
 
-df = pd.read_csv(StringIO(requests.get("https://drive.google.com/file/d/1cNzCXXzy_jfKd1Ip3CVhs4WB8RZtaJp6/view?usp=drive_link").text))
+df = pd.read_csv(StringIO(requests.get("https://drive.google.com/uc?export=download&id=1cNzCXXzy_jfKd1Ip3CVhs4WB8RZtaJp6").text))
 
 layout = html.Div([
     html.Div([
