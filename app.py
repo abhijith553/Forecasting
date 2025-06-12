@@ -2,6 +2,7 @@ from dash import Dash, dcc, html, Input, Output
 from pages import eda, forecast, about_the_project, methodology, more_insights
 
 app = Dash(__name__, suppress_callback_exceptions=True)
+server = app.server
 
 app.index_string = '''
 <!DOCTYPE html>
