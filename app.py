@@ -133,4 +133,5 @@ eda.register_callbacks(app)
 forecast.register_callbacks(app)
 
 if __name__ == '__main__':
-    app.run(debug=False, host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
+    port = int(os.environ.get("PORT", 10000))  # Use PORT env var set by Render
+    app.run_server(debug=True, host='0.0.0.0', port=port)
