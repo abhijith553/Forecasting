@@ -1,8 +1,7 @@
 from dash import Dash, dcc, html, Input, Output
 from pages import eda, forecast, about_the_project, methodology, more_insights
 
-app = Dash(__name__, suppress_callback_exceptions=True)
-server = app.server
+app = Dash(__name__)
 
 app.index_string = '''
 <!DOCTYPE html>
@@ -133,6 +132,6 @@ def render_page(pathname):
 eda.register_callbacks(app)
 forecast.register_callbacks(app)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))  # Use PORT env var set by Render
-    app.run_server(debug=True, host='0.0.0.0', port=port)
+    app.run(debug=False, host="0.0.0.0", port=port)
